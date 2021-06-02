@@ -12,8 +12,24 @@ document.querySelector("#registerform button").addEventListener("click", functio
 
 
 
-	const user = new User(firstname, lastname, email, password, username);
+	//const user = new User(firstname, lastname, email, password, username);
+
+	const user = new User();
 
 
+	//Check the user information
+	const feedback = user.checkInfo(firstname, lastname, email, password, username);
+
+	if(feedback.length > 0){
+		//there is error ..
+		feedback.forEach((error) =>{
+			toastr.warning(`${error}`);
+		})
+	}else{
+
+		//there is no error
+		user.registerUser();
+
+	}
 
 });
